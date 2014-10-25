@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+
+# If you are reading this, and you thing that you might be able
+# to get some sort of use out of this program, I feel sorry for you.
+
+
+########## Accepted Commands ##########
+
+# If you enter the name of a directory, it will be entered.
+
+# If you enter the name of other things, they might be opened in something 
+#           other than vim. Maybe stuff might get unzipped or something. Who knows?
+#           Otherwise, they will be opened in vim
+
+# Also, hitting just enter opens vim.
+
+# Entering the name of somethig that doesn't exist also opens vim, unless you 
+#           have already entered one of the following commands.
+
+# mkdir - Enter the name of the directory you want to create.
+#           Or don't. Whatever.
+
+# delete - Enter the name of the file/directory you want to delete.
+#           You will be prompted to confirm the deletion.
+
+# rename - Enter the file/directory you want to rename, then enter its new name.
+
+# open - Enter the name of the file you want to open, then enter the name of
+#           the program you want to open it with. You can also enter the name of
+#           the program with which you want it to be opened. It works either way.
+
+# hidden - This unhides hidden file and directories.
+
+# hide - This rehides those files and directories.
+
+# :q - This quits the program.
+#           Yes, the colon is necessary.
+
+#######################################
+import os
+
+def main():
+    clear()
+    prompt()
+
+def fnf():
+    print('\033[1;33m File Not Found \033[0m')
+
+def clear():
+   os.system('clear')
+
+def mkdir():
+    os.mkdir(input(' >> '))
+    clear()
+
+def delete():
+    try:
+        thing=input(' >> ')
+        os.system('rm -ri '+thing)
+    except FileNotFoundError:
+        if thing!='':
+            fnf()
+            delete()
+        else:
+            clear()
+    else:
+        clear()
+
+def rename():
+    try:
+        thing=input(' >> ')
+        os.rename(thing,input(' >> '))
+    except FileNotFoundError:
+        if thing!='':
+            fnf()
+            rename()
+        else:
+            clear()
+    else:
+        clear()
+def open_with():
+    thing=input(' > ')
+    command=input(' > ')
+    os.system(command+' '+thing)
+    clear()
+
+def prompt_hidden():
+        current_dir_name()
+        items_in_current_dir_hidden()
+        command=input('\n > ')
+        if command=='mkdir':
+            mkdir()
+            prompt_hidden()
+        elif command=='delete':
+            delete()
+            prompt_hidden()
+        elif command=='rename':
+            rename()
+            prompt_hidden()
+        elif command=='open':
+            open_with()
+            clear()
+            prompt_hidden()
+        elif command=='hide':
+            clear()
+            prompt()
+        else:
+            if command!=':q':
+                if os.path.isdir(command)==True:
+                    os.chdir(command)
+                    clear()
+                    prompt_hidden()
+                elif str.endswith(command,'.jpg')==True or str.endswith(command,'.png')==True \
+                        or str.endswith(command,'.gif')==True:
+                    os.system('meh '+command)
+                    clear()
+                    prompt_hidden()
+                elif str.endswith(command,'.pdf')==True or str.endswith(command,'.epub')==True:
+                    os.system('firefox '+command+' &')
+                    clear()
+                    prompt_hidden()
+                elif str.endswith(command,'.tar.gz')==True:
+                    os.system('tar xvzf '+command)
+                    clear()
+                    prompt_hidden()
+                elif str.endswith(command,'.zip')==True:
+                    os.system('unzip '+command)
+                    clear()
+                    prompt_hidden()
+                else:
+                    os.system('vim '+command)
+                    clear()
+                    prompt_hidden()
+            else:
+                clear()
+
+def prompt():
+    current_dir_name()
+    items_in_current_dir()
+    command=input('\n > ')
+    if command=='mkdir':
+        mkdir()
+        prompt()
+    elif command=='delete':
+        delete()
+        prompt()
+    elif command=='rename':
+        rename()
+        prompt()
+    elif command=='open':
+        open_with()
+        prompt()
+    elif command=='hidden':
+        clear()
+        prompt_hidden()
+    else:
+        if command!=':q':
+            if os.path.isdir(command)==True:
+                os.chdir(command)
+                clear()
+                prompt()
+            elif str.endswith(command,'.jpg')==True or str.endswith(command,'.png')==True \
+                    or str.endswith(command,'.gif')==True:
+                os.system('meh '+command)
+                clear()
+                prompt()
+            elif str.endswith(command,'.pdf')==True or str.endswith(command,'.epub')==True:
+                os.system('firefox '+command+' &')
+                clear()
+                prompt()
+            elif str.endswith(command,'.tar.gz')==True:
+                os.system('tar xvzf '+command)
+                clear()
+                prompt()
+            elif str.endswith(command,'.zip')==True:
+                os.system('unzip '+command)
+                clear()
+                prompt()
+            else:
+                os.system('vim '+command)
+                clear()
+                prompt()
+        else:
+            clear()
+
+def current_dir_name():
+    print('\033[4;33m\t',os.getcwd(),'\033[0m')
+
+def items_in_current_dir_hidden():
+    items_in_dir=os.listdir()
+    items_in_dir.sort()
+    for n in items_in_dir:
+        if os.path.islink(n)==True: 
+            if os.path.isdir(n)==True:
+                print('\033[1;36m',n+' -> \033[36m'+os.readlink(n)+'\033[0m')
+            else:
+                print(' '+n+' -> \033[32m'+os.readlink(n)+'\033[0m')
+        elif os.path.isdir(n)==True:
+            print('\033[1;36m',n+'\033[0m')
+        elif os.access(n,os.X_OK)==True:
+            print('\033[36m',n+'\033[0m*')
+        else:
+            print(' '+n)
+
+def items_in_current_dir():
+    items_in_dir=os.listdir()
+    items_in_dir.sort()
+    for n in items_in_dir:
+        if str.startswith(n,'.')!=True:
+            if os.path.islink(n)==True: 
+                if os.path.isdir(n)==True:
+                    print('\033[1;36m',n+' -> \033[36m'+os.readlink(n)+'\033[0m')
+                else:
+                    print(' '+n+' -> \033[32m'+os.readlink(n)+'\033[0m')
+            elif os.path.isdir(n)==True:
+                print('\033[1;36m',n+'\033[0m')
+            elif os.access(n,os.X_OK)==True:
+                print('\033[36m',n+'\033[0m*')
+            else:
+                print(' '+n)
+
+main()
