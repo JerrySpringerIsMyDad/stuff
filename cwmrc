@@ -1,0 +1,85 @@
+command firefox	'firefox'
+command htop	'urxvtc -g 70x2 -e htop'
+command clock  	'xclock -g 120x120'
+command ranger 	'urxvtc -g 120x28 -e ranger'
+command ncmpcpp	'urxvtc -g 120x28 -e ncmpcpp'
+command mixer	'urxvtc -e alsamixer -g'
+############
+sticky yes
+ignore xclock
+############
+fontname	"gohufont:pixelsize=11"
+color menubg	"#20202E"
+color menufg	"#20202E"
+color selfont	"#f4f4f4"
+color font	"#444444"
+############
+gap 0 0 0 0  
+moveamount 20 
+############
+borderwidth 1 
+color inactiveborder	"#20202E"
+color activeborder	"#333333"
+############
+bind 4S-q	quit
+bind 4S-r	restart
+bind 4S-c	delete
+bind 4-Return   unmap	
+bind 4-slash	search
+bind 4S-slash	exec
+bind 4S-h	resizeleft
+bind 4S-j	resizedown
+bind 4S-k	resizeup
+bind 4S-l	resizeright
+bind 4-h	moveleft
+bind 4-j	movedown
+bind 4-k	moveup
+bind 4-l	moveright
+bind M-h	unmap
+bind M-j        unmap
+bind M-k        unmap
+bind M-l        unmap
+bind M-H  	unmap
+bind M-J  	unmap
+bind M-K  	unmap
+bind M-L  	unmap
+bind M-Return	unmap
+bind M-Left	unmap
+bind M-Down     unmap
+bind M-Up	unmap
+bind M-Right	unmap
+bind 4-Tab	cycle
+bind 4S-Tab	rcycle
+bind 4S-w	maximize
+bind 4-g	grouptoggle
+bind 4-1	grouponly1
+bind 4-2	grouponly2
+bind 4-3	grouponly3
+bind 4-4	grouponly4
+bind 4S-1	group1
+bind 4S-2	group2
+bind 4S-3	group3
+bind 4S-4	group4
+bind 4-Up	ptrmoveup
+bind 4-Down	ptrmovedown
+bind 4-Left	ptrmoveleft
+bind 4-Right	ptrmoveright
+bind 4C-1	movetogroup1
+bind 4C-2	movetogroup2
+bind 4C-3	movetogroup3
+bind 4C-4	movetogroup4
+############
+mousebind 4-1 	window_move
+mousebind 4-3	window_resize
+############
+bind 4S-Return  urxvtc
+bind 4S-d	urxvtd 
+bind 4-9	"amixer sset Master 2-"
+bind 4-0	"amixer sset Master 2+"
+bind 4S-9	"xbacklight -10"
+bind 4S-0	"xbacklight +10"
+bind 4-p	"mpc -q toggle"
+bind 4-minus	"mpc -q volume -5"
+bind 4-equal	"mpc -q volume +5"
+bind 4-period	"mpc -q next"
+bind 4-comma	"mpc -q prev"
