@@ -79,10 +79,46 @@ def rename():
     else:
         clear()
 def open_with():
-    thing=input(' > ')
-    command=input(' > ')
-    os.system(command+' '+thing)
-    clear()
+    try:
+        thing=input(' >> ')
+        command=input(' >> ')
+        os.system(command+' '+thing)
+    except FileNotFoundError:
+        if thing!='':
+            fnf()
+            open_with()
+        else:
+            clear()
+    else:
+        clear()
+
+def move():
+    try:
+        thing=input(' >> ')
+        move_to=input(' >> ')
+        os.system('mv '+thing+' '+move_to)
+    except FileNotFoundError:
+        if thing!='':
+            fnf()
+            move()
+        else:
+            clear()
+    else:
+        clear()
+
+def copy():
+    try:
+        thing=input(' >> ')
+        move_to=input(' >> ')
+        os.system('cp -R '+thing+' '+move_to)
+    except FileNotFoundError:
+        if thing!='':
+            fnf()
+            copy()
+        else:
+            clear()
+    else:
+        clear()
 
 def prompt_hidden():
         current_dir_name()
@@ -104,6 +140,12 @@ def prompt_hidden():
         elif command=='hide':
             clear()
             prompt()
+        elif command=='move':
+            move()
+            prompt_hidden()
+        elif command=='copy':
+            copy()
+            prompt_hidden()
         else:
             if command!=':q':
                 if os.path.isdir(command)==True:
@@ -153,6 +195,12 @@ def prompt():
     elif command=='hidden':
         clear()
         prompt_hidden()
+    elif command=='move':
+        move()
+        prompt()
+    elif command=='copy':
+        copy()
+        prompt()
     else:
         if command!=':q':
             if os.path.isdir(command)==True:
