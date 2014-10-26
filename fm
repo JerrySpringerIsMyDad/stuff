@@ -33,6 +33,10 @@
 
 # hide - This rehides those files and directories.
 
+# move - 
+
+# copy - 
+
 # :q - This quits the program.
 #           Yes, the colon is necessary.
 
@@ -157,6 +161,10 @@ def prompt_hidden():
                     os.system('meh '+command)
                     clear()
                     prompt_hidden()
+                elif str.endswith(command,'.flac')==True or str.endswith(command,'.mp3')==True:
+                    os.system('mplayer '+command)
+                    clear()
+                    prompt()
                 elif str.endswith(command,'.pdf')==True or str.endswith(command,'.epub')==True:
                     os.system('firefox '+command+' &')
                     clear()
@@ -210,6 +218,10 @@ def prompt():
             elif str.endswith(command,'.jpg')==True or str.endswith(command,'.png')==True \
                     or str.endswith(command,'.gif')==True:
                 os.system('meh '+command)
+                clear()
+                prompt()
+            elif str.endswith(command,'.flac')==True or str.endswith(command,'.mp3')==True:
+                os.system('mplayer '+command)
                 clear()
                 prompt()
             elif str.endswith(command,'.pdf')==True or str.endswith(command,'.epub')==True:
