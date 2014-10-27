@@ -1,3 +1,6 @@
+#!/bin/sh
+echo -en "\033[1;33m"
+clear; cat << "EOF"
                 ,        ,
                /(        )`
                \ \___   / |
@@ -17,3 +20,10 @@
             ______( (_  / \______
           ,'  ,-----'   |        \
           `--{__________)        \/
+EOF
+echo " "
+echo -en "\033[0m"
+echo -en "\t\t\033[4;32m"; uname
+echo -ne "\033[0m\tkernel:\t\t\033[1m  "; uname -r
+echo -ne "\033[0m\tmachine:\t\033[1m  "; uname -m
+echo -ne "\033[0m"
