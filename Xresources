@@ -1,1 +1,56 @@
-/home/bradley/etc/X11/Xresources
+*perl-lib:         /usr/lib/urxvt/perl/
+*perl-ext-common:  default,matcher
+*matcher.button:   1
+*urlLauncher:      /home/bradley/bin/firefox
+
+*transparent: false 
+
+*font: xft:gohufont:pixelsize=11
+*scrollBar: false 
+
+!*background: #ffffff
+!*foreground: #555555
+!*cursorColor: #555555
+*background: #20202E
+*foreground: #f4f4f4
+*cursorColor: #f4f4f4
+!black
+!*color0:  #ffffff
+!*color8:  #cccccc
+*color0: #20202E
+*color8:  #333333
+
+!red
+*color1:  #60353E
+*color9:  #60353E
+
+!green
+*color2:  #A0ADA4
+*color10: #A0ADA4
+
+!yellow
+*color3:  #AD6E77
+*color11: #AD6E77
+
+!blue
+*color4:  #ABB6AE
+*color12: #ABB6AE
+
+!magenta
+*color5:  #9F6064
+*color13: #9F6064
+
+!cyan
+*color6:  #8C938C
+*color14: #8C938C
+
+!white
+!*color7:  #555555
+!*color15: #555555
+*color7: #f4f4f4
+*color15: #f4f4f4
+ 
+!xclock*Foreground:      #555555
+!xclock*minorColor:      #ffffff
+xclock*Foreground:	#f4f4f4
+xclock*minorColor:	#20202E

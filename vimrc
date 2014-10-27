@@ -1,1 +1,11 @@
-/home/bradley/etc/vimrc
+set hlsearch
+set term=rxvt
+set t_Co=16
+syntax on
+set background=dark
+set nobackup
+set noundofile
+set ignorecase
+set smartcase
+set number
+set mouse=r
