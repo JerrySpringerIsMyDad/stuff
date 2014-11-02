@@ -74,8 +74,9 @@ mousebind 4-3	window_resize
 ############
 bind 4S-Return  urxvtc
 bind 4S-d	urxvtd 
-bind 4-9	"amixer sset Master 2-"
-bind 4-0	"amixer sset Master 2+"
+bind 4-9	"ponymix decrease 2"
+bind 4-0	"ponymix increase 2"
+bind 4S-m	"ponymix toggle"
 bind 4S-9	"xbacklight -10"
 bind 4S-0	"xbacklight +10"
 bind 4-p	"mpc -q toggle"
